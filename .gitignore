@@ -1,0 +1,46 @@
+brain-dump.txt
+
+# PhpStorm
+.idea/
+_ide_helper.php
+.phpstorm.meta.php
+_ide_helper_models.php
+
+# VSC
+.vscode/
+
+# General
+*~
+.DS_Store
+.svn
+.cvs
+*.bak
+*.swp
+Thumbs.db
+.well-known/
+*.sublime-*
+
+# Node / npm / yarn
+/node_modules
+yarn-error.log
+
+# Laravel / App
+.env
+.env-back
+/public/storage
+/public/build
+/public/js
+/public/css
+/public/fonts
+/public/images
+/public/mix-manifest.json
+/storage/*.key
+# Composer
+.phpunit.result.cache
+/vendor
+auth.json
+
+# Homestead
+Homestead.json
+# Homestead.yaml we need this tracked!
+.vagrant/
