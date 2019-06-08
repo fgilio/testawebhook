@@ -6,5 +6,6 @@
 <div class="container">
     @yield('content')
 </div>
+@livewireAssets
 </body>
 </html>
