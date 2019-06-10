@@ -2,45 +2,48 @@
 
 namespace App\Http\Livewire;
 
-use Illuminate\Support\Facades\Redis;
-use Illuminate\Support\Str;
+use App\Endpoint;
 use Livewire\Component;
 
 class Webhook extends Component
 {
     public $uuid;
 
+    public $endpoint;
+
+    public $url;
+
     public $requests;
 
     public function mount($uuid)
     {
         $this->uuid = $uuid;
-        $this->requests = collect(Redis::hGetAll("uuid:{$this->uuid}:requests"))->map(function ($request) {
-            return json_decode($request, true);
-        })->toArray();
+        $this->endpoint = Endpoint::find($uuid);
+        dump($this->endpoint);
+        $this->url = $this->endpoint->url;
+        $this->requests = $this->endpoint->requests();
     }
 
-    public function randomize()
+    public function updating()
     {
-        $this->uuid = Str::uuid();
+        $this->endpoint = Endpoint::find($this->uuid);
+        $this->requests = $this->endpoint->requests();
+        dump('updating', $this->endpoint);
     }
 
+    public function cleanUp()
+    {
+        dump('cleanUp', $this->endpoint);
+        $this->endpoint->cleanUp();
+    }
 
     public function forceRefresh()
     {
-//        dump('forceRefresh');
-        $this->requests = collect(Redis::hGetAll("uuid:{$this->uuid}:requests"))->map(function ($request) {
-            return json_decode($request, true);
-        })->toArray();
+        $this->requests = $this->endpoint->requests();
     }
 
     public function render()
     {
-//        dump($this->requests);
-
-        return view('livewire.webhook')->with([
-            'uuid' => $this->uuid,
-            'requests' => $this->requests,
-        ]);
+        return view('livewire.webhook');
     }
 }
