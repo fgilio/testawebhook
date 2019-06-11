@@ -10,7 +10,7 @@ class WebhookController extends Controller
     public function index($uuid = null)
     {
         if ($uuid && Endpoint::find($uuid)) {
-            return view('index')->with([
+            return view('app')->with([
                 'uuid' => $uuid,
             ]);
         }
@@ -20,7 +20,7 @@ class WebhookController extends Controller
 
     public function store(Request $request, $uuid)
     {
-        dump("store:$uuid");
+//        dump("store:$uuid");
         $endpoint = Endpoint::find($uuid);
         $endpoint->storeRequest($request);
 

@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use App\Endpoint;
 use Livewire\Component;
 
-class Webhook extends Component
+class EndpointRequests extends Component
 {
     public $uuid;
 
@@ -19,7 +19,7 @@ class Webhook extends Component
     {
         $this->uuid = $uuid;
         $this->endpoint = Endpoint::find($uuid);
-        dump($this->endpoint);
+//        dump($this->endpoint);
         $this->url = $this->endpoint->url;
         $this->requests = $this->endpoint->requests();
     }
@@ -28,12 +28,12 @@ class Webhook extends Component
     {
         $this->endpoint = Endpoint::find($this->uuid);
         $this->requests = $this->endpoint->requests();
-        dump('updating', $this->endpoint);
+//        dump('updating', $this->endpoint);
     }
 
     public function cleanUp()
     {
-        dump('cleanUp', $this->endpoint);
+//        dump('cleanUp', $this->endpoint);
         $this->endpoint->cleanUp();
     }
 
@@ -44,6 +44,6 @@ class Webhook extends Component
 
     public function render()
     {
-        return view('livewire.webhook');
+        return view('livewire.EndpointRequests');
     }
 }
