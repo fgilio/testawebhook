@@ -1,3 +1,3 @@
 <li>
-    {{ json_encode($request) }}
+    {{ $request->created_at }}
 </li>

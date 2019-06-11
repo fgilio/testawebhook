@@ -7,39 +7,19 @@ use Livewire\Component;
 
 class EndpointRequests extends Component
 {
-    public $uuid;
-
     public $endpoint;
-
-    public $url;
 
     public $requests;
 
-    public function mount($uuid)
+    public function mount(Endpoint $endpoint)
     {
-        $this->uuid = $uuid;
-        $this->endpoint = Endpoint::find($uuid);
-//        dump($this->endpoint);
-        $this->url = $this->endpoint->url;
-        $this->requests = $this->endpoint->requests();
-    }
-
-    public function updating()
-    {
-        $this->endpoint = Endpoint::find($this->uuid);
-        $this->requests = $this->endpoint->requests();
-//        dump('updating', $this->endpoint);
+        $this->endpoint = $endpoint;
+        $this->requests = $endpoint->requests;
     }
 
     public function cleanUp()
     {
-//        dump('cleanUp', $this->endpoint);
-        $this->endpoint->cleanUp();
-    }
-
-    public function forceRefresh()
-    {
-        $this->requests = $this->endpoint->requests();
+        $this->endpoint->requests()->delete();
     }
 
     public function render()

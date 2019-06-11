@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Endpoint;
+use App\EndpointOLD;
 use Livewire\Component;
 
 class EndpointRequest extends Component

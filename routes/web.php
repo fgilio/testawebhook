@@ -11,5 +11,5 @@
 |
 */
 
-Route::get('/{uuid?}', 'WebhookController@index');
-Route::post('/{uuid}', 'WebhookController@store');
+Route::get('/{endpointUuid?}', 'WebhookController@index');
+Route::post('/{endpointUuid}', 'WebhookController@store');

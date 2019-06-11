@@ -2,57 +2,30 @@
 
 namespace App;
 
-use Illuminate\Support\Facades\Redis;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 
-class Endpoint
+class Endpoint extends Model
 {
-    public $uuid;
-    public $url;
+    protected $guarded = [];
 
-    public function __construct($uuid)
+    public static function createNew()
     {
-        $this->uuid = $uuid;
-        $this->url = url($uuid);
+        return parent::create([
+            'uuid' => Str::uuid()
+        ]);
     }
 
-    public static function create()
+    public function getUrlAttribute()
     {
-        $uuid = Str::uuid();
-        cache()->tags(['uuids'])->put("uuid:$uuid", true, now()->addDay());
-
-        return new static($uuid);
+        return url($this->uuid);
     }
 
-    public static function find($uuid)
-    {
-        $exists = cache()->tags(['uuids'])->has("uuid:$uuid");
-
-        return $exists ? new static($uuid) : false;
-    }
-
-    public function storeRequest(Request $request)
-    {
-        cache()->tags([$this->uuid])->put("uuid:{$this->uuid}", true, now()->addDay());
-        Redis::hSet("uuid:{$this->uuid}:requests", Str::uuid(), json_encode($request->toArray()));
-    }
-
+    /**
+     * Get the Requests for the Endpoint.
+     */
     public function requests()
     {
-        return collect(Redis::hGetAll("uuid:{$this->uuid}:requests"))
-            ->map(function ($request) {
-                return json_decode($request, true);
-            });
-    }
-
-    public function cleanUp()
-    {
-        Redis::hDel("uuid:{$this->uuid}:requests", '*');
-    }
-
-    public function __toString()
-    {
-        return $this->url;
+        return $this->hasMany(\App\Request::class)->orderByDesc('id');
     }
 }

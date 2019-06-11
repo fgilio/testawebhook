@@ -18,7 +18,7 @@
             </div>
             <div class="flex flex-grow lg:w-3/4 xl:w-4/5">
                 <div class="w-full lg:px-6 xl:w-3/4 xl:px-12">
-                    @livewire('endpoint-url', $uuid)
+                    @livewire('endpoint-url', $endpoint)
                 </div>
             </div>
         </div>
@@ -27,10 +27,10 @@
 
 <main class="flex flex-wrap px-6 h-screen pt-16">
     <div class="w-full sm:w-2/6 bg-gray-500">
-        @livewire('endpoint-requests', $uuid)
+        @livewire('endpoint-requests', $endpoint)
     </div>
     <div class="w-full sm:w-4/6 bg-gray-400">
-        {{--        @livewire('endpointRequestDetails', $uuid)--}}
+        {{--        @livewire('endpointRequestDetails', $endpoint)--}}
     </div>
 </main>
 

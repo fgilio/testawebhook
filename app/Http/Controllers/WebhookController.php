@@ -7,22 +7,22 @@ use Illuminate\Http\Request;
 
 class WebhookController extends Controller
 {
-    public function index($uuid = null)
+    public function index(Endpoint $endpoint = null)
     {
-        if ($uuid && Endpoint::find($uuid)) {
+        if ($endpoint) {
             return view('app')->with([
-                'uuid' => $uuid,
+                'endpoint' => $endpoint,
             ]);
         }
 
-        return redirect()->to(Endpoint::create()->url);
+        return redirect()->to(Endpoint::createNew()->url);
     }
 
-    public function store(Request $request, $uuid)
+    public function store(Request $request, Endpoint $endpoint)
     {
-//        dump("store:$uuid");
-        $endpoint = Endpoint::find($uuid);
-        $endpoint->storeRequest($request);
+        $endpoint->requests()->save(
+            \App\Request::createFromRaw($request)
+        );
 
         return response([], 201);
     }
