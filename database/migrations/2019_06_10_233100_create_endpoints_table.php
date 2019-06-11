@@ -16,8 +16,7 @@ class CreateEndpointsTable extends Migration
         Schema::create('endpoints', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('uuid');
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at');
+            $table->timestamps();
         });
     }
 
