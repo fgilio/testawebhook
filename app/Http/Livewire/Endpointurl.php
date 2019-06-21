@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use App\Endpoint;
 use Livewire\Component;
 
-class EndpointUrl extends Component
+class Endpointurl extends Component
 {
     public $url;
 

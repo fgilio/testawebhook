@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use App\Endpoint;
 use Livewire\Component;
 
-class EndpointRequests extends Component
+class Endpointrequests extends Component
 {
     public $endpoint;
 
