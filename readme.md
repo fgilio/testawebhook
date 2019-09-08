@@ -1,6 +1,8 @@
 # Test a Webhook
 Easily test any Webhook.
 
+\* This is at an alpha stage, the UI is not even there and every deploy purges all past stored endpoints and their requests.
+
 ## Instructions
 
 Just open https://testawebhook.com and you will be redirected to your own Webhook testing endpoint.
