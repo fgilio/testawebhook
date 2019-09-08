@@ -30,7 +30,7 @@
         @livewire('endpoint-requests', $endpoint)
     </div>
     <div class="w-full sm:w-4/6 bg-gray-400">
-        {{--        @livewire('endpointRequestDetails', $endpoint)--}}
+        @livewire('endpoint-request-details', $endpoint)
     </div>
 </main>
 

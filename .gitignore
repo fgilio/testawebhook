@@ -22,11 +22,13 @@ Thumbs.db
 
 # Node / npm / yarn
 /node_modules
+npm-debug.log
 yarn-error.log
 
 # Laravel / App
 .env
-.env-back
+.env.backup
+/public/hot
 /public/storage
 /public/build
 /public/js
@@ -35,6 +37,7 @@ yarn-error.log
 /public/images
 /public/mix-manifest.json
 /storage/*.key
+!/bootstrap/cache/livewire-components.php
 # Composer
 .phpunit.result.cache
 /vendor
@@ -42,5 +45,5 @@ auth.json
 
 # Homestead
 Homestead.json
-# Homestead.yaml we need this tracked!
+Homestead.yaml
 .vagrant/

@@ -5,25 +5,29 @@ namespace App\Http\Livewire;
 use App\Endpoint;
 use Livewire\Component;
 
-class Endpointrequests extends Component
+class EndpointRequests extends Component
 {
-    public $endpoint;
+    protected $endpointId;
 
-    public $requests;
+//    protected $requests;
 
     public function mount(Endpoint $endpoint)
     {
-        $this->endpoint = $endpoint;
-        $this->requests = $endpoint->requests;
+        $this->endpointId = $endpoint->id;
     }
 
     public function cleanUp()
     {
-        $this->endpoint->requests()->delete();
+        Endpoint::findOrFail($this->endpointId)->requests()->delete();
     }
 
     public function render()
     {
-        return view('livewire.EndpointRequests');
+        $endpoint = Endpoint::findOrFail($this->endpointId);
+
+        return view('livewire.endpoint-requests', [
+            'endpoint' => $endpoint,
+            'requests' => $endpoint->requests,
+        ]);
     }
 }

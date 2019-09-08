@@ -13,7 +13,11 @@
         "cross-env": "^5.1",
         "laravel-mix": "^4.0.7",
         "resolve-url-loader": "^2.3.1",
-        "tailwindcss": "^1.0.3",
+        "sass": "^1.23.0-module.beta.1",
+        "sass-loader": "^7.3.1",
         "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "tailwindcss": "^1.1.2"
     }
 }

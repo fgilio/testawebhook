@@ -21,6 +21,7 @@ class CreateRequestsTable extends Migration
             $table->string('host_ip');
             $table->json('headers');
             $table->json('payload');
+            $table->boolean('selected')->default(false);
             $table->timestamps();
         });
     }

@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use App\Endpoint;
 use Livewire\Component;
 
-class Endpointurl extends Component
+class EndpointUrl extends Component
 {
     public $url;
 
@@ -16,6 +16,6 @@ class Endpointurl extends Component
 
     public function render()
     {
-        return view('livewire.EndpointUrl');
+        return view('livewire.endpoint-url');
     }
 }
